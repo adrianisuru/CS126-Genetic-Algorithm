@@ -13,6 +13,8 @@ int main() {
 
 
     ofSetupOpenGL(640, 480, DISPLAY_MODE);
+    ofEnableAlphaBlending();
 
-	ofRunApp(new ofBaseApp());
+	ofRunApp(new EvolveView());
+
 }
