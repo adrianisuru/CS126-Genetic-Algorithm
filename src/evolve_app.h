@@ -14,6 +14,10 @@ public:
 
 private:
 
+	void show_dialog();
+
+	ofImage load_image(ofFileDialogResult fileResult);
+
     ofImage myImage;
 
 };

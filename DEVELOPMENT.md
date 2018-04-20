@@ -1,4 +1,11 @@
 # Development Log
+### Added file dialog.
+
+(Fri Apr 20 09:34:24 2018)
+
+Now images can be chosen using a file dialog.
+
+
 ### Wrote DNA and Gene class.
 
 (Fri Apr 20 07:51:59 2018)
