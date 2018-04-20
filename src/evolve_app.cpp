@@ -1,15 +1,16 @@
-#include "view.h"
+#include "evolve_app.h"
 
-void EvolveView::setup() {
+
+void EvolveApp::setup() {
     myImage.load("source.png");
     myImage.update();
 }
 
-void EvolveView::draw() {
+void EvolveApp::draw() {
     myImage.draw(0, 0);
 }
 
-void EvolveView::update() {
+void EvolveApp::update() {
     myImage.update();
     return;
 }

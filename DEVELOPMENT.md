@@ -1,36 +1,64 @@
 # Development Log
-## Wrote script to generate dev log.
+### Wrote DNA and Gene class.
+
+(Fri Apr 20 07:51:59 2018)
+
+Gene stores data of circles color and position as well as a blank section (this simulates garbage mutations). Members of both are accessed with [] to make randomly choosing a field easier.
+
+Scratched model, view, controller in favor of a more openFrameworks-ey style.
+(main + ofApp) The view and controller will both be in evolve_app.cpp.
+
+Upadated gen_log.sh. Now it stashes changes before updating DEVELOPMENT.md
+
+
+### Wrote script to generate dev log.
+
+(Thu Apr 19 11:08:59 2018)
 
 Created src/evolve/ for files relating to the genetic algorithm.
 
 
-## Tested image loading.
+### Tested image loading.
+
+(Thu Apr 19 10:40:29 2018)
 
 
 
-## Got OF gui working
+### Got OF gui working
+
+(Wed Apr 18 23:09:57 2018)
 
 
 
-## Setup project structure
+### Setup project structure
+
+(Wed Apr 18 20:13:57 2018)
 
 Made OF project.
 Model, View, Controller model
 added development log DEVELOPMENT.md
 
 
-## Wrote project proposal (PROPOSAL.md)
+### Wrote project proposal (PROPOSAL.md)
+
+(Tue Apr 10 20:57:12 2018)
 
 
 
-## Update PROPOSAL.md
+### Update PROPOSAL.md
+
+(Wed Apr 4 18:08:21 2018)
 
 
 
-## Create PROPOSAL.md
+### Create PROPOSAL.md
+
+(Wed Apr 4 18:07:54 2018)
 
 
 
-## Create README.md
+### Create README.md
+
+(Wed Apr 4 18:07:35 2018)
 
 

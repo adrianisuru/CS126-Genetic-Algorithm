@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 
-class EvolveView : public ofBaseApp {
+class EvolveApp : public ofBaseApp {
 
 public:
 

@@ -1,6 +1,6 @@
 #include "model.h"
-#include "view.h"
-#include "controller.h"
+#include "evolve_app.h"
+
 
 #include "ofMain.h"
 
@@ -15,6 +15,6 @@ int main() {
     ofSetupOpenGL(640, 480, DISPLAY_MODE);
     ofEnableAlphaBlending();
 
-	ofRunApp(new EvolveView());
+	ofRunApp(new EvolveApp());
 
 }
