@@ -25,6 +25,30 @@ const double& DNA::Gene::operator[](unsigned i) const {
     return n_;
 }
 
+
+double& DNA::Gene::operator[](unsigned i) {
+    switch (i % 8) {
+        case 0: return cx_;
+        case 1: return cy_;
+        case 2: return rad_;
+        case 3: return r_;
+        case 4: return g_;
+        case 5: return b_;
+        case 6: return a_;
+        case 7: return n_;
+        default: return n_;
+    }
+    return n_;
+}
+
+double& DNA::Gene::operator[](double p) {
+    return (*this)[(unsigned) (p * 8)];
+}
+
+const double& DNA::Gene::operator[](double p) const {
+    return (*this)[(unsigned) (p * 8)];
+}
+
 const double& DNA::Gene::cx() const {
     return cx_;
 }
@@ -51,22 +75,6 @@ const double& DNA::Gene::b() const {
 
 const double& DNA::Gene::a() const {
     return a_;
-}
-
-
-double& DNA::Gene::operator[](unsigned i) {
-    switch (i % 8) {
-        case 0: return cx_;
-        case 1: return cy_;
-        case 2: return rad_;
-        case 3: return r_;
-        case 4: return g_;
-        case 5: return b_;
-        case 6: return a_;
-        case 7: return n_;
-        default: return n_;
-    }
-    return n_;
 }
 
 void DNA::Gene::cx(double cx) {
@@ -110,6 +118,14 @@ DNA::Gene& DNA::operator[](unsigned i) {
     return genome_[i % size_];
 }
 
+DNA::Gene& DNA::operator[](double p) {
+    return (*this)[(unsigned) (p * size_)];
+}
+
 const DNA::Gene& DNA::operator[](unsigned i) const {
     return genome_[i % size_];
+}
+
+const DNA::Gene& DNA::operator[](double p) const {
+    return (*this)[(unsigned) (p * size_)];
 }

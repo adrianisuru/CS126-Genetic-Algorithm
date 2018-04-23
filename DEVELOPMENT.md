@@ -1,4 +1,17 @@
 # Development Log
+### Started gui with buttons
+
+(Mon Apr 23 13:11:56 2018)
+
+There is now a gui to open png files.
+
+Added EvolveImage class.
+
+Still need to figure out how to draw shapes to an image.
+
+When an image is selected with the file chooser it shows up discolored when drawn to the window. Still need to fix this issue.
+
+
 ### Added file dialog.
 
 (Fri Apr 20 09:34:24 2018)
