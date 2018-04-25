@@ -1,4 +1,15 @@
 # Development Log
+### Mock up gui finished
+
+(Wed Apr 25 00:29:25 2018)
+
+Gui now displays original, best, and evolving with scaling on resize.
+
+Added function to randomize initial dna.
+
+Still need to implemenent the algorithm. DNA class will need to be modified to take into account bounds of each field (ex. r must be between 0 - 255 or cx must be between 0 and img_width)
+
+
 ### Started gui with buttons
 
 (Mon Apr 23 13:11:56 2018)

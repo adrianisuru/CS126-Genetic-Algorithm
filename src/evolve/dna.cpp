@@ -1,4 +1,5 @@
 #include "dna.h"
+#include <cstdlib>
 
 DNA::Gene::Gene() : cx_(0), cy_(0), rad_(0), r_(0), g_(0), b_(0), a_(0) {
 
@@ -106,13 +107,23 @@ void DNA::Gene::a(double a) {
 }
 
 
-DNA::DNA(unsigned size) : size_(size), genome_(new Gene[size_]) {
+DNA::DNA(unsigned size, unsigned img_width, unsigned img_height) : size_(size), img_width_(img_width),
+    img_height_(img_height), genome_(new Gene[size_]) {
 
 }
 
 const unsigned& DNA::size() const {
     return size_;
 }
+
+const unsigned& DNA::img_width() const {
+    return img_width_;
+}
+
+const unsigned& DNA::img_height() const {
+    return img_height_;
+}
+
 
 DNA::Gene& DNA::operator[](unsigned i) {
     return genome_[i % size_];
@@ -128,4 +139,16 @@ const DNA::Gene& DNA::operator[](unsigned i) const {
 
 const DNA::Gene& DNA::operator[](double p) const {
     return (*this)[(unsigned) (p * size_)];
+}
+
+void randomize(DNA& dna) {
+    for (unsigned i = 0; i < dna.size_; i++) {
+        dna[i].cx(rand() % dna.img_width_ );
+        dna[i].cy(rand() % dna.img_height_);
+        dna[i].rad(rand() % ((dna.img_width_ + dna.img_height_) / 2));
+        dna[i].r(rand() % 255);
+        dna[i].g(rand() % 255);
+        dna[i].b(rand() % 255);
+        dna[i].a(rand() % 255);
+    }
 }
