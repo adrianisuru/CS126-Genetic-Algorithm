@@ -4,38 +4,39 @@
 class DNA {
 public:
     class Gene {
-        double cx_, cy_;        //center coordinate
-        double rad_;            //radius
-        double r_, g_, b_, a_;  //pixel in rgba format
-        double n_;              //blank section for garbage mutations
+        int cx_, cy_;        //center coordinate
+        int rad_;            //radius
+        int r_, g_, b_, a_;  //pixel in rgba format
+        int n_;              //blank section for garbage mutations
     public:
         Gene();
-        Gene(double cx, double cy, double rad,
-            double r, double g, double b, double a);
+        Gene(int cx, int cy, int rad,
+            int r, int g, int b, int a);
 
-        const double& operator[](unsigned i) const; //access specific field by index
-        const double& operator[](double p) const;   //access random field with random p
+        const int& operator[](unsigned i) const; //access specific field by index
+        const int& operator[](double p) const;   //access random field with random p
 
-        double& operator[](unsigned i);             //access specific field by index (non const)
-        double& operator[](double p);               //access random field with random p (non const)
+        int& operator[](unsigned i);             //access specific field by index (non const)
+        int& operator[](double p);               //access random field with random p (non const)
 
         //getters
-        const double& cx() const;
-        const double& cy() const;
-        const double& rad() const;
-        const double& r() const;
-        const double& g() const;
-        const double& b() const;
-        const double& a() const;
+        const int& cx() const;
+        const int& cy() const;
+        const int& rad() const;
+        const int& r() const;
+        const int& g() const;
+        const int& b() const;
+        const int& a() const;
 
         //setters
-        void cx(double cx);
-        void cy(double cy);
-        void rad(double rad);
-        void r(double r);
-        void g(double g);
-        void b(double b);
-        void a(double a);
+        void cx(int cx);
+        void cy(int cy);
+        void rad(int rad);
+        void r(int r);
+        void g(int g);
+        void b(int b);
+        void a(int a);
+
 
 
 
@@ -43,6 +44,13 @@ public:
     };
 
     DNA(unsigned size, unsigned img_width, unsigned img_height);
+
+    // Rule of five
+    DNA(const DNA& source);                     // Copy constructor
+    DNA(DNA&& source) noexcept;                 // Move constructor
+    ~DNA();                                     // Destructor
+    DNA& operator=(const DNA& source);          // Copy assignment operator
+    DNA& operator=(DNA&& source) noexcept;      // Move assignment operator
 
     const unsigned& size() const;               //get size
     const unsigned& img_width() const;          //get image width
@@ -54,9 +62,16 @@ public:
     const Gene& operator[](unsigned i) const;   //access specific gene by index
     const Gene& operator[](double p)   const;   //access random gene with random p
 
+    //mutates the given gene in the indexed field by the specified amount (0 - 1]
+    friend void mutate(DNA& dna, unsigned gene, unsigned field, double amount);
+
     friend void randomize(DNA& dna);            //fills this DNA with random values
 
 private:
+    void shallow_copy(const DNA& source);
+    void deep_copy(const DNA& source);
+    void clear();
+
     unsigned size_;
     unsigned img_width_;
     unsigned img_height_;

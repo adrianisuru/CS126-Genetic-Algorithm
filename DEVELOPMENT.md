@@ -1,4 +1,13 @@
 # Development Log
+### Started genetic algorithm implementation
+
+(Wed Apr 25 10:53:52 2018)
+
+Refactored DNA. DNA::Gene now stores its fields as integers. Implemented rule of five for DNA.
+
+Wrote basic genetic algorithm. It seems to not give good results though. Ill have to test this more to make sure it is really working.
+
+
 ### Mock up gui finished
 
 (Wed Apr 25 00:29:25 2018)

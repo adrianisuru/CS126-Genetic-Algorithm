@@ -3,8 +3,10 @@
 #include "ofxGui.h"
 #include "evolve_image.h"
 
+#include <iostream>
+
 #define PADDING 15
-#define DNA_SIZE 50
+#define DNA_SIZE 100
 
 
 EvolveApp::EvolveApp() {
@@ -18,7 +20,7 @@ EvolveApp::EvolveApp() {
     img_disp_height_ = (window_height_ - (3 * PADDING)) - font_.getSize();
 
 
-    ofBackground(50,50,50);
+    ofBackground(50, 50, 50);
 }
 
 
@@ -75,9 +77,18 @@ void EvolveApp::update() {
 
     DNA dna = best_.get_dna();
 
-    //dna[rand()][rand()]
+    if (rand() % 2) mutate(dna, rand(), rand(), 0.25); //mutates some random section by 25%
+    else mutate(dna, rand(), rand(), 0.75);
+    evolving_.set_dna(dna);
 
-    if (best_.get_fitness(original_) <= evolving_.get_fitness(original_)) {
+
+    unsigned long long best_fit = best_.get_fitness(original_);
+    unsigned long long evol_fit = evolving_.get_fitness(original_);
+    //std::cout << "best: " << best_fit << " evol: " << evol_fit << std::endl;
+
+    //higher fitness is worse (i know this is weird)
+    if (best_fit >= evol_fit) {
+
         best_ = evolving_;
     }
 
@@ -110,6 +121,7 @@ bool EvolveApp::load_image(ofFileDialogResult fileResult) {
         string fileExtension = ofToUpper(file.getExtension());
         if (fileExtension == "PNG") {
             original_.load(fileResult.getPath());
+            original_.setImageType(OF_IMAGE_COLOR);
             init_evolving(DNA_SIZE);
             return true;
         }

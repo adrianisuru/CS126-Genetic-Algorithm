@@ -15,7 +15,7 @@ public:
 
     void update();
 
-    unsigned long get_fitness(ofImage& original) const;
+    unsigned long long get_fitness(const ofImage& original) const;
 
 
 
