@@ -1,4 +1,24 @@
 # Development Log
+### Worked more on algorithm
+
+(Tue May 1 14:05:47 2018)
+
+Added superior random double function. The macro from before was
+suseptable to floating point errors.
+
+Changed from circles to squares.
+
+The algorithm as of right now is
+
+```
+1.) Choose whether to change draw order or mutate 1 circle (50% chance)
+2.) If we are changing draw order, swap the current index with a random
+index
+3.) If we are mutating, choose a random gene index and mutate a random
+field (x, y, radius, or color) by a random amount [-1, 1]
+```
+
+
 ### Fixed genetic algorithm.
 
 (Tue May 1 00:20:29 2018)

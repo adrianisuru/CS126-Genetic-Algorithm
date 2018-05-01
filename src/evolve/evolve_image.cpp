@@ -31,8 +31,8 @@ void EvolveImage::update() {
     for (unsigned i = 0; i < dna_.size(); i++) {
         DNA::Gene& gene = dna_[i];
         ofSetColor(ofColor(gene.r(), gene.g(), gene.b(), gene.a()));
-        ofDrawCircle(gene.cx(), gene.cy(), gene.rad());
-        //ofDrawRectangle (gene.cx() - gene.rad(), gene.cy() - gene.rad(), gene.rad(), gene.rad());
+        //ofDrawCircle(gene.cx(), gene.cy(), gene.rad());
+        ofDrawRectangle (gene.cx() - gene.rad(), gene.cy() - gene.rad(), gene.rad(), gene.rad());
     }
     buffer_.end();
     ofPixels pixels;

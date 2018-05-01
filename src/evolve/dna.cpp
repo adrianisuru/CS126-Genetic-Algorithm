@@ -120,7 +120,7 @@ void mutate(DNA& dna, unsigned gene, unsigned field, double amount) {
                    (field == 3) ? 255 :
                    (field == 4) ? 255 :
                    (field == 5) ? 255 :
-                   (field == 6) ? 127 :
+                   (field == 6) ? 255 :
                    (field == 7) ? std::numeric_limits<std::uint32_t>::max(): 0;
     if (max == 0) return;
 
@@ -221,6 +221,12 @@ void randomize(DNA& dna) {
         dna[i].r(rand() % 255);
         dna[i].g(rand() % 255);
         dna[i].b(rand() % 255);
-        dna[i].a(rand() % 127);
+        dna[i].a(rand() % 255);
     }
+}
+
+void swap(DNA& dna, unsigned gene1, unsigned gene2) {
+    DNA::Gene tmp =  dna[gene1];
+    dna[gene1] = dna[gene2];
+    dna[gene2] = tmp;
 }

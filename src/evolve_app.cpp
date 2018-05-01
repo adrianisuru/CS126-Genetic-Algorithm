@@ -4,17 +4,20 @@
 #include "evolve_image.h"
 
 #include <iostream>
+#include <random>
 
 #define PADDING 15
 #define DNA_SIZE 100
-#define RAND_PERCENT() ((rand() / RAND_MAX) * ((rand() % 2) ? 1 : -1))
 
 
 
-EvolveApp::EvolveApp() {
+
+EvolveApp::EvolveApp() : running_(false) {
+
+    //sets range [-1, 1]
+    range_ = std::uniform_real_distribution<double>(-1.0, 1.0);
 
 
-    font_.load("vag.ttf", 16);
 
     window_width_ = ofGetWidth();
     window_height_ = ofGetHeight();
@@ -33,7 +36,27 @@ void EvolveApp::init_evolving(unsigned dna_length) {
     best_ = evolving_;
 }
 
-void EvolveApp::update_layout() {
+void EvolveApp::genetic() {
+    DNA dna = best_.get_dna();
+
+    if (rand() % 2) {
+        mutate(dna, mut_idx_, rand(), rand_double()); //mutates some random section by up to amount
+    } else {
+        swap(dna, mut_idx_, (unsigned)(mut_idx_ + ((double) mut_idx_ / evolving_.get_dna().size()) * rand_double()));
+    }
+    mut_idx_++;
+
+    evolving_.set_dna(dna);
+    evolving_.update();
+
+    unsigned long long best_fit = best_.get_fitness(original_);
+    unsigned long long evol_fit = evolving_.get_fitness(original_);
+    //std::cout << "best: " << best_fit << " evol: " << evol_fit << std::endl;
+
+    //higher fitness is worse (i know this is weird)
+    if (best_fit >= evol_fit) {
+        best_ = evolving_;
+    }
 
 }
 
@@ -45,10 +68,17 @@ void EvolveApp::setup(){
 	gui_.setup();
 
     open_btn_.addListener(this, &EvolveApp::show_dialog);
+    start_btn_.addListener(this, &EvolveApp::start);
 
 	gui_.add(open_btn_.setup("open"));
     gui_.add(start_btn_.setup("start"));
 
+    font_.load("vag.ttf", 16);
+
+}
+
+void EvolveApp::start() {
+    running_ = true;
 }
 
 void EvolveApp::draw() {
@@ -75,23 +105,13 @@ void EvolveApp::draw() {
     gui_.draw();
 }
 
+double EvolveApp::rand_double() {
+    return range_(random_);
+}
+
 void EvolveApp::update() {
-
-    DNA dna = best_.get_dna();
-    double amount = (rand() % 2) ? 0.25 : 0.75;
-    mutate(dna, mut_idx_++, rand(), RAND_PERCENT() * 0.75 + 0.25); //mutates some random section by up to amount
-    evolving_.set_dna(dna);
-    evolving_.update();
-
-    unsigned long long best_fit = best_.get_fitness(original_);
-    unsigned long long evol_fit = evolving_.get_fitness(original_);
-    //std::cout << "best: " << best_fit << " evol: " << evol_fit << std::endl;
-
-    //higher fitness is worse (i know this is weird)
-    if (best_fit >= evol_fit) {
-
-        best_ = evolving_;
-    }
+    if (!running_) return;
+    genetic();
 
     original_.update();
     best_.update();

@@ -64,7 +64,7 @@ public:
 
     //mutates the given gene in the indexed field by the specified amount (0 - 1]
     friend void mutate(DNA& dna, unsigned gene, unsigned field, double amount);
-
+    friend void swap(DNA& dna, unsigned gene1, unsigned gene2);
     friend void randomize(DNA& dna);            //fills this DNA with random values
 
 private:

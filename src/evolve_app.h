@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 #include "evolve_image.h"
+#include <random>
 
 class EvolveApp : public ofBaseApp {
 
@@ -26,7 +27,12 @@ private:
 
 	void init_evolving(unsigned dna_length);
 
-	void update_layout();
+	void genetic();
+
+	double rand_double();
+
+	void start();
+
 
     ofImage original_;
 
@@ -48,5 +54,11 @@ private:
 	unsigned img_disp_height_;
 
 	unsigned mut_idx_;
+
+	//used for getting random double in range [-1, 1]
+	std::uniform_real_distribution<double> range_;
+   	std::default_random_engine random_;
+
+	bool running_;
 
 };
