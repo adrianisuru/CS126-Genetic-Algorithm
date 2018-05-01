@@ -7,6 +7,8 @@
 
 #define PADDING 15
 #define DNA_SIZE 100
+#define RAND_PERCENT() ((rand() / RAND_MAX) * ((rand() % 2) ? 1 : -1))
+
 
 
 EvolveApp::EvolveApp() {
@@ -76,11 +78,10 @@ void EvolveApp::draw() {
 void EvolveApp::update() {
 
     DNA dna = best_.get_dna();
-
-    if (rand() % 2) mutate(dna, rand(), rand(), 0.25); //mutates some random section by 25%
-    else mutate(dna, rand(), rand(), 0.75);
+    double amount = (rand() % 2) ? 0.25 : 0.75;
+    mutate(dna, mut_idx_++, rand(), RAND_PERCENT() * 0.75 + 0.25); //mutates some random section by up to amount
     evolving_.set_dna(dna);
-
+    evolving_.update();
 
     unsigned long long best_fit = best_.get_fitness(original_);
     unsigned long long evol_fit = evolving_.get_fitness(original_);
@@ -92,7 +93,6 @@ void EvolveApp::update() {
         best_ = evolving_;
     }
 
-    evolving_.update();
     original_.update();
     best_.update();
 }

@@ -20,10 +20,6 @@ public:
 
 private:
 
-	struct layout {
-
-	};
-
 	void show_dialog();
 
 	bool load_image(ofFileDialogResult fileResult);
@@ -50,5 +46,7 @@ private:
 	unsigned window_height_;
 	unsigned img_disp_width_;
 	unsigned img_disp_height_;
+
+	unsigned mut_idx_;
 
 };

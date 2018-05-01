@@ -1,4 +1,17 @@
 # Development Log
+### Fixed genetic algorithm.
+
+(Tue May 1 00:20:29 2018)
+
+There was an issue with my algorithm. It was getting the same fitness
+for evolving and best. This was because I mutated the dna for evolving
+but I never updated evolving before calculating the fitness. So the
+fitness was being calculated on old dna.
+
+Added `RAND_PERCENT()`, a macro for a random in [0, 1]. See branch
+`cool_macros` for some cool macros.
+
+
 ### Started genetic algorithm implementation
 
 (Wed Apr 25 10:53:52 2018)
