@@ -12,7 +12,7 @@
 
 
 
-EvolveApp::EvolveApp() : running_(false) {
+EvolveApp::EvolveApp() : running_(false), generation_count_(0) {
 
     //sets range [-1, 1]
     range_ = std::uniform_real_distribution<double>(-1.0, 1.0);
@@ -30,6 +30,7 @@ EvolveApp::EvolveApp() : running_(false) {
 
 
 void EvolveApp::init_evolving(unsigned dna_length) {
+    generation_count_ = 0;
     DNA dna(dna_length, original_.getWidth(), original_.getHeight());
     randomize(dna);
     evolving_.set_dna(dna);
@@ -58,6 +59,8 @@ void EvolveApp::genetic() {
         best_ = evolving_;
     }
 
+    generation_count_++;
+
 }
 
 void EvolveApp::setup(){
@@ -69,9 +72,12 @@ void EvolveApp::setup(){
 
     open_btn_.addListener(this, &EvolveApp::show_dialog);
     start_btn_.addListener(this, &EvolveApp::start);
+    save_btn_.addListener(this, &EvolveApp::save);
 
 	gui_.add(open_btn_.setup("open"));
     gui_.add(start_btn_.setup("start"));
+    gui_.add(save_btn_.setup("save"));
+    gui_.add(generations_.set("Generations: ", ""));
 
     font_.load("vag.ttf", 16);
 
@@ -113,8 +119,11 @@ void EvolveApp::update() {
     if (!running_) return;
     genetic();
 
+    //evolving_.update(); //its in genetic() so we dont have to update twice
     original_.update();
     best_.update();
+
+    generations_ = ofToString(generation_count_);
 }
 
 void EvolveApp::windowResized(int w, int h){
@@ -148,4 +157,13 @@ bool EvolveApp::load_image(ofFileDialogResult fileResult) {
     }
 
     return false;
+}
+
+void EvolveApp::save() {
+    running_ = false;
+    ofFileDialogResult saveFileResult = ofSystemSaveDialog("Save file as png", "Save a file");
+    if (saveFileResult.bSuccess) {
+        ofFile file(saveFileResult.getPath());
+        best_.save(file);
+    }
 }

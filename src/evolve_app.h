@@ -4,6 +4,7 @@
 #include "ofxGui.h"
 #include "evolve_image.h"
 #include <random>
+#include <string>
 
 class EvolveApp : public ofBaseApp {
 
@@ -33,6 +34,8 @@ private:
 
 	void start();
 
+	void save();
+
 
     ofImage original_;
 
@@ -42,9 +45,11 @@ private:
 
 	ofxButton open_btn_;
 	ofxButton start_btn_;
+	ofxButton save_btn_;
 
+	ofParameter<std::string> generations_;
 
-	ofTrueTypeFont 	font_;
+	ofTrueTypeFont font_;
 
 	ofxPanel gui_;
 
@@ -52,6 +57,8 @@ private:
 	unsigned window_height_;
 	unsigned img_disp_width_;
 	unsigned img_disp_height_;
+
+	unsigned generation_count_;
 
 	unsigned mut_idx_;
 
