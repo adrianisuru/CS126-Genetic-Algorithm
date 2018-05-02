@@ -1,4 +1,23 @@
 # Development Log
+### Added multithreading, readme
+
+(Wed May 2 16:25:40 2018)
+
+Fitness calculation now uses openmp.
+
+Started writing README.md
+
+Draw circles or squares by specifying macro `DRAW_SQUARES` in
+evolve_image.h
+
+
+### Added generation counter and save button.
+
+(Wed May 2 14:53:38 2018)
+
+Next hope to add multithreading.
+
+
 ### Worked more on algorithm
 
 (Tue May 1 14:05:47 2018)

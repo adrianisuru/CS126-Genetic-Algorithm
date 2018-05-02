@@ -1,5 +1,5 @@
-#pragma once
-
+#ifndef EVOLVE_DNA_H_
+#define EVOLVE_DNA_H_
 
 class DNA {
 public:
@@ -78,3 +78,5 @@ private:
     Gene* genome_;
 
 };
+
+#endif

@@ -11,7 +11,7 @@ Here is a picture of me I generated with hexagons using [this website](http://al
 
 | ***Original***   | ***Evolution***  |
 | -------------    | ------------- |
-| <img src="/proposal/source.png" alt="source" width="150" height="150"/>     | <img src="/proposal/evolution.png" alt="evolution" width="150" height="150"/>  |
+| <img src="/img/proposal_source.png" alt="source" width="150" height="150"/>     | <img src="/img/proposal_evolution.png" alt="evolution" width="150" height="150"/>  |
 
 
 

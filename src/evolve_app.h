@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EVOLVE_APP_H_
+#define EVOLVE_APP_H_
 
 #include "ofMain.h"
 #include "ofxGui.h"
@@ -36,7 +37,6 @@ private:
 
 	void save();
 
-
     ofImage original_;
 
 	EvolveImage best_;
@@ -69,3 +69,5 @@ private:
 	bool running_;
 
 };
+
+#endif

@@ -9,15 +9,10 @@
 #define PADDING 15
 #define DNA_SIZE 100
 
-
-
-
 EvolveApp::EvolveApp() : running_(false), generation_count_(0) {
 
     //sets range [-1, 1]
     range_ = std::uniform_real_distribution<double>(-1.0, 1.0);
-
-
 
     window_width_ = ofGetWidth();
     window_height_ = ofGetHeight();
@@ -89,15 +84,6 @@ void EvolveApp::start() {
 
 void EvolveApp::draw() {
     ofSetupScreen();
-
-	//ofSetHexColor(0x999999);
-
-	// lets show our window pos in pixels
-	// macs actually start the Y pos from 40
-//	font_.drawString("window size ("+ofToString(window_width_)+", "+ofToString( window_height_)+")", 10, 25);
-
-
-
 
     original_.draw(PADDING, PADDING, img_disp_width_, img_disp_height_);
     best_.draw(2 * PADDING + img_disp_width_, PADDING, img_disp_width_, img_disp_height_);

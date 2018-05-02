@@ -1,9 +1,6 @@
 #include "evolve_app.h"
-
-
 #include "ofMain.h"
 #include <cstdlib>
-
 
 #define DISPLAY_MODE OF_WINDOW
 
