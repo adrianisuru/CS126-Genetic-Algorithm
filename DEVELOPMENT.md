@@ -1,4 +1,11 @@
 # Development Log
+### Finished README.md
+
+(Wed May 2 21:43:13 2018)
+
+Finished final project!
+
+
 ### Added multithreading, readme
 
 (Wed May 2 16:25:40 2018)
